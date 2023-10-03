@@ -1,7 +1,24 @@
 function fetchBooks() {
+
+  return fetch('https://anapioficeandfire.com/api/books')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Convert the response to JSON
+    return response.json();
+  })
+  .then(data => {
+    // Call the renderBooks() function with the JSON data as an argument
+    renderBooks(data);
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
+}
   // To pass the tests, don't forget to return your fetch!
   
-}
+
 
 function renderBooks(books) {
   const main = document.querySelector('main');
